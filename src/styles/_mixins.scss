@@ -1,0 +1,52 @@
+@import "variables";
+
+@mixin button($color: $primary) {
+  height: $controls-height;
+  display: inline-block;
+  min-width: $controls-height;
+  padding: 4px;
+  text-align: center;
+  background-color: transparent;
+  border: 0;
+  color: rgba($black, 0.7);
+  border-radius: 2px;
+  outline: none;
+  transition: background-color 200ms ease-in-out;
+
+  &:hover {
+    background-color: $gray-20;
+    cursor: pointer;
+  }
+
+  &:active,
+  .active {
+    color: $color;
+  }
+
+  & > .material-icons {
+    font-size: $font-lg;
+  }
+}
+
+@mixin square($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin around-by-edges {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,45 @@
+// colors
+$primary: #008000;
+$primary-light: lighten(desaturate(adjust-hue(#008000, 17), 61.11), 67.84);
+$secondary: #1a73e8;
+
+$white: #ffffff;
+$black: #000000;
+
+$gray-10: #f8f9fa;
+$gray-20: #eeeeee;
+$gray-30: #e2e3e3;
+$gray-40: #dedede;
+$gray-50: #c0c0c0;
+$gray-60: #a2a2a2;
+$gray-70: #202124;
+$gray-80: #111111;
+
+$border-color: $gray-50;
+
+
+// font
+$font-base: 14px;
+$font-sm: 12px;
+$font-md: 16px;
+$font-lg: 18px;
+$font-lg-x: 24px;
+
+$body-font: $font-sm/1.2 "Roboto", sans-serif;
+
+
+// size
+$dashboard-header-height: 64px;
+$header-height: 40px;
+$toolbar-height: 40px;
+$formula-height: 32px;
+$controls-height: 24px;
+$row-height: 24px;
+
+$info-cell-width: 40px;
+$cell-width: 120px;
+
+
+// z-index
+$dashboard-layout: 1000;
+$table-layout: 2;

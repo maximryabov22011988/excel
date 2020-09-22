@@ -1,0 +1,41 @@
+@import "variables";
+@import "mixins";
+
+.excel-header {
+  @include around-by-edges();
+
+  height: $header-height;
+  padding: 8px 16px 0;
+
+  &__input {
+    height: $controls-height;
+    margin-top: -8px;
+    margin-left: -8px;
+    padding: 2px 7px;
+    font-size: $font-lg;
+    line-height: 24px;
+    color: $black;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+    outline: none;
+
+    &:hover {
+      border: 1px solid $border-color;
+    }
+
+    &:focus {
+      border-color: $secondary
+;
+      box-shadow: 0 0 4px $secondary;
+    }
+  }
+
+  &__button-group {
+    margin-top: -12px;
+  }
+
+  &__button-item {
+    @include button();
+  }
+}
