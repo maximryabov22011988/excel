@@ -9,7 +9,19 @@
     "eslint:recommended", "google"
   ],
   "rules": {
+    "max-len": ["error", {
+      "code": 150
+    }],
     "semi": "off",
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "operator-linebreak": ["error", "after", {
+      "overrides": {
+        "?": "before",
+        ":": "before"
+      }
+    }],
+    "object-curly-spacing": ["error", "always", {
+      "objectsInObjects": false
+    }]
   }
 }
