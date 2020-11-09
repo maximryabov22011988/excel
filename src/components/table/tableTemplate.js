@@ -3,26 +3,39 @@ const charCode = {
   Z: 90,
 }
 
-const toCellTemplate = (content) => {
+const toCellTemplate = (content, index) => {
   return `
-    <div class="row__cell" contenteditable="true">
+    <div class="row__cell" contenteditable="true" data-column-number=${index}>
       ${content}
     </div>
   `
 }
 
-const toColumnTemplate = (content) => {
+const createResizeTemplate = (type = '') => {
+  const classes = `"resize ${type ? `resize--${type}` : ''}"`
+  const dataResize = `data-resize=${type}`
+  return `<div class=${classes} ${dataResize}></div>`
+}
+
+
+const toColumnTemplate = (content, index) => {
   return `
-    <div class="row__column">
+    <div class="row__column" data-type="resizable" data-column-number=${index}>
       ${content}
+      ${createResizeTemplate('column')}
     </div>
   `
 }
 
 const createRow = (content, info = '') => {
+  const resize = info ? createResizeTemplate('row') : ''
+
   return `
-    <div class="row">
-      <div class="row__info">${info}</div>
+    <div class="row" data-type="resizable">
+      <div class="row__info">
+        ${info}
+        ${resize}
+      </div>
       <div class="row__data">${content}</div>
     </div>
   `

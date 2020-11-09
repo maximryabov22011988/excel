@@ -30,12 +30,47 @@ class Dom {
     this.html('')
   }
 
+  closest(selector) {
+    return $(this.nativeElement.closest(selector))
+  }
+
+  get data() {
+    return this.nativeElement.dataset
+  }
+
+  set data(newValue) {
+    this.nativeElement.dataset = newValue
+  }
+
+  getCoords() {
+    return this.nativeElement.getBoundingClientRect()
+  }
+
+  addClasses(classes) {
+    return this.nativeElement.classList.add(classes)
+  }
+
+  removeClasses(classes) {
+    return this.nativeElement.classList.remove(classes)
+  }
+
+  setStyles(style) {
+    return Object.entries(style).reduce((result, [cssProperty, value]) => {
+      result[cssProperty] = value
+      return result
+    }, this.nativeElement.style)
+  }
+
   addListener(eventType, callback) {
     this.nativeElement.addEventListener(eventType, callback)
   }
 
   removeListener(eventType, callback) {
     this.nativeElement.removeEventListener(eventType, callback)
+  }
+
+  findAll(selector) {
+    return this.nativeElement.querySelectorAll(selector)
   }
 }
 
