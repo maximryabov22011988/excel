@@ -1,0 +1,60 @@
+@import "variables";
+@import "mixins";
+
+.row {
+  display: flex;
+  height: $row-height;
+  min-height: 20px;
+
+  &__info {
+    @include centering();
+
+    position: relative;
+    min-width: $info-cell-width;
+    height: 100%;
+    color: $gray-60;
+    background-color: $gray-10;
+    border: 1px solid $border-color;
+    border-top: none;
+    user-select: none;
+  }
+
+  &__data {
+    display: flex;
+    color: $gray-60;
+  }
+
+  &__column {
+    @include centering();
+
+    position: relative;
+    min-width: 40px;
+    width: $cell-width;
+    height: 100%;
+    background-color: $gray-10;
+    border: 1px solid $border-color;
+    border-top: none;
+    border-left: none;
+    user-select: none;
+  }
+
+  &__cell {
+    min-width: 40px;
+    width: $cell-width;
+    height: 100%;
+    padding: 5px;
+    white-space: nowrap;
+    color: $gray-80;
+    border: 1px solid $gray-30;
+    border-top: none;
+    border-left: none;
+    outline: none;
+
+    &.is-selected {
+      z-index: $table-layout;
+      border: none;
+      outline-offset: -2px;
+      outline: 2px solid $secondary;
+    }
+  }
+}
