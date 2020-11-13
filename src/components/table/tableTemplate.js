@@ -3,9 +3,9 @@ const charCode = {
   Z: 90,
 }
 
-const toCellTemplate = (content, index) => {
+const toCellTemplate = (row) => (content, column) => {
   return `
-    <div class="row__cell" contenteditable="true" data-column-number=${index}>
+    <div class="row__cell" contenteditable="true" data-column-number=${column} data-id="${row}:${column}" data-type="cell">
       ${content}
     </div>
   `
@@ -51,15 +51,15 @@ export const createTable = (rowCount = 15) => {
       .map(toColumnTemplate)
       .join('')
 
-  const cells = new Array(columnCount)
-      .fill('')
-      .map(toCellTemplate)
-      .join('')
-
   const rows = []
   rows.push(createRow(columns))
-  for (let i = 0; i < rowCount; i++) {
-    rows.push(createRow(cells, i + 1))
+  for (let row = 0; row < rowCount; row++) {
+    const cells = new Array(columnCount)
+        .fill('')
+        .map(toCellTemplate(row))
+        .join('')
+
+    rows.push(createRow(cells, row + 1))
   }
 
   return rows.join('')

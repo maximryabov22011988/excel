@@ -49,6 +49,7 @@
     border-top: none;
     border-left: none;
     outline: none;
+    overflow: hidden;
 
     &.is-selected {
       z-index: $table-layout;

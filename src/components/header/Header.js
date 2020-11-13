@@ -3,9 +3,10 @@ import { ExcelComponent } from '@core/ExcelComponent';
 export class Header extends ExcelComponent {
   static className = 'excel-header'
 
-  constructor(componentContainerNode) {
+  constructor(componentContainerNode, options = {}) {
     super(componentContainerNode, {
       name: 'Header',
+      ...options,
     });
   }
 
