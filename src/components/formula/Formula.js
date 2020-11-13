@@ -1,12 +1,16 @@
+import { $ } from '@core/utils/dom';
+import { events } from '@core/constants/events';
 import { ExcelComponent } from '@core/ExcelComponent';
+import { ENTER, TAB } from '@core/constants/keys';
 
 export class Formula extends ExcelComponent {
   static className = 'excel-formula'
 
-  constructor(componentContainerNode) {
+  constructor(componentContainerNode, options = {}) {
     super(componentContainerNode, {
       name: 'Formula',
-      listeners: ['input'],
+      listeners: ['input', 'keydown'],
+      ...options,
     });
   }
 
@@ -22,7 +26,24 @@ export class Formula extends ExcelComponent {
     `;
   }
 
+  init() {
+    super.init()
+    this.input = this.componentContainerNode.find('input')
+
+    this.subscribe(events.TABLE_INPUT, (value) => {
+      this.input.text(value)
+    })
+  }
+
   onInput(event) {
-    console.log(event.target.value, this.componentContainerNode)
+    this.dispatch(events.FORMULA_INPUT, $(event.target).text())
+  }
+
+  onKeydown(event) {
+    const keys = [ENTER, TAB]
+    if (keys.includes(event.key)) {
+      $(event.target).blur()
+      this.dispatch(events.FORMULA_DONE, event)
+    }
   }
 }

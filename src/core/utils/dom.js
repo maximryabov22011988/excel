@@ -14,6 +14,18 @@ class Dom {
     return this.nativeElement.outerHTML.trim()
   }
 
+  text(text) {
+    const isControl = this.nativeElement.tagName.toLocaleLowerCase() === 'input' || this.nativeElement.tagName.toLocaleLowerCase() === 'textarea'
+    const property = isControl ? 'value' : 'textContent'
+
+    if (typeof text === 'string') {
+      this.nativeElement[property] = text
+      return this
+    }
+
+    return this.nativeElement[property].trim()
+  }
+
   append(node) {
     if (node instanceof Dom) {
       node = node.nativeElement
@@ -40,6 +52,16 @@ class Dom {
 
   set data(newValue) {
     this.nativeElement.dataset = newValue
+  }
+
+  focus() {
+    this.nativeElement.focus()
+    return this
+  }
+
+  blur() {
+    this.nativeElement.blur()
+    return this
   }
 
   getCoords() {
@@ -71,6 +93,32 @@ class Dom {
 
   findAll(selector) {
     return this.nativeElement.querySelectorAll(selector)
+  }
+
+  find(selector) {
+    return $(this.nativeElement.querySelector(selector))
+  }
+
+  addClass(className) {
+    this.nativeElement.classList.add(className)
+    return this
+  }
+
+  removeClass(className) {
+    this.nativeElement.classList.remove(className)
+    return this
+  }
+
+  id({ isParse } = { isParse: false }) {
+    if (isParse) {
+      const [row, column] = this.id().split(':')
+      return {
+        row: Number(row),
+        column: Number(column),
+      }
+    }
+
+    return this.data.id
   }
 }
 
