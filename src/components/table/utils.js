@@ -1,8 +1,8 @@
-import { range } from '@core/utils';
+import { range } from '@core/utils'
 
 export const shouldResize = (event) => event.target.dataset.resize
 
-export const isCell = ({ data }) => data && data.type === 'cell'
+export const isCell = ({ data }) => data?.type === 'cell'
 
 export const matrix = (target, current) => {
   const targetCell = target.id({ isParse: true })

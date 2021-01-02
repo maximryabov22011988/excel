@@ -1,42 +1,43 @@
-import { ExcelComponent } from '@core/ExcelComponent';
+import { ExcelStateComponent } from '@core/ExcelStateComponent'
+import { defaultStyles } from '@core/constants/defaultValues'
+import { events } from '@core/constants/events'
+import { $ } from '@core/utils/dom'
 
-export class Toolbar extends ExcelComponent {
+import { createToolbar } from './toolbarTemplate'
+
+export class Toolbar extends ExcelStateComponent {
   static className = 'excel-toolbar'
 
   constructor(componentContainerNode, options = {}) {
     super(componentContainerNode, {
       name: 'Toolbar',
+      listeners: ['click'],
+      subscribeBy: ['currentStyles'],
       ...options,
-    });
+    })
+  }
+
+  prepare() {
+    this.initState(defaultStyles)
+  }
+
+  storeChanged(changes) {
+    this.setState(changes.currentStyles)
+  }
+
+  onClick(event) {
+    const targetNode = $(event.target)
+    if (targetNode.data.type === 'toolbar-button') {
+      const style = JSON.parse(targetNode.data.value)
+      this.emit(events.TOOLBAR_APPLY_STYLE, style)
+    }
+  }
+
+  get template() {
+    return createToolbar(this.state)
   }
 
   toHTML() {
-    return `
-      <div class="excel-toolbar__button-group">
-          <button class="excel-toolbar__button-item">
-              <span class="material-icons">format_align_left</span>
-          </button>
-
-          <button class="excel-toolbar__button-item">
-              <span class="material-icons">format_align_center</span>
-          </button>
-
-          <button class="excel-toolbar__button-item">
-              <span class="material-icons">format_align_right</span>
-          </button>
-
-          <button class="excel-toolbar__button-item">
-              <span class="material-icons">format_bold</span>
-          </button>
-
-          <button class="excel-toolbar__button-item">
-              <span class="material-icons">format_italic</span>
-          </button>
-
-          <button class="excel-toolbar__button-item">
-              <span class="material-icons">format_strikethrough</span>
-          </button>
-      </div>
-    `;
+    return this.template
   }
 }
