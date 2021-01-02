@@ -18,7 +18,7 @@ class Dom {
     const isControl = this.nativeElement.tagName.toLocaleLowerCase() === 'input' || this.nativeElement.tagName.toLocaleLowerCase() === 'textarea'
     const property = isControl ? 'value' : 'textContent'
 
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.nativeElement[property] = text
       return this
     }
@@ -54,6 +54,14 @@ class Dom {
     this.nativeElement.dataset = newValue
   }
 
+  attr(name, value) {
+    if (value) {
+      this.nativeElement.setAttribute(name, value)
+      return this
+    }
+    return this.nativeElement.getAttribute(name)
+  }
+
   focus() {
     this.nativeElement.focus()
     return this
@@ -76,9 +84,16 @@ class Dom {
     return this.nativeElement.classList.remove(classes)
   }
 
+  getStyles(styles = []) {
+    return styles.reduce((result, cssProperty) => {
+      result[cssProperty] = this.nativeElement.style[cssProperty]
+      return result
+    }, {})
+  }
+
   setStyles(style) {
-    return Object.entries(style).reduce((result, [cssProperty, value]) => {
-      result[cssProperty] = value
+    return Object.entries(style).reduce((result, [property, value]) => {
+      result[property] = value
       return result
     }, this.nativeElement.style)
   }

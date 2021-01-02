@@ -6,6 +6,10 @@ export class TableSelection {
     this.current = null
   }
 
+  get selectedIds() {
+    return this.group.map((cellNode) => cellNode.id())
+  }
+
   select(cellNode) {
     this.resetSelection()
 
@@ -24,5 +28,9 @@ export class TableSelection {
   resetSelection() {
     this.group.forEach((cellNode) => cellNode.removeClass(TableSelection.className))
     this.group = []
+  }
+
+  applyStyle(style) {
+    this.group.forEach((cellNode) => cellNode.setStyles(style))
   }
 }

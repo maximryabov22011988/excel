@@ -1,14 +1,14 @@
-import { DOMListener } from '@core/DOMListener';
+import { DOMListener } from '@core/DOMListener'
 
 export class ExcelComponent extends DOMListener {
   constructor(componentContainerNode, options = {}) {
-    super(componentContainerNode, options.listeners);
+    super(componentContainerNode, options.listeners)
 
     this.name = options.name || ''
     this.emitter = options.emitter
-
+    this.subscribeBy = options.subscribeBy || []
+    this.store = options.store
     this.unsubscribers = []
-
     this.prepare()
   }
 
@@ -16,14 +16,25 @@ export class ExcelComponent extends DOMListener {
   prepare() {}
 
   // Уведомляем слушателей о событии event
-  dispatch(event, ...args) {
-    this.emitter.dispatch(event, ...args)
+  emit(event, ...args) {
+    this.emitter.emit(event, ...args)
   }
 
   // Подписываемся на событие event
-  subscribe(event, fn) {
-    const unsubscribe = this.emitter.subscribe(event, fn)
+  on(event, fn) {
+    const unsubscribe = this.emitter.on(event, fn)
     this.unsubscribers.push(unsubscribe)
+  }
+
+  dispatch(action) {
+    this.store.dispatch(action)
+  }
+
+  // Приходят изменения по тем полям, на которые мы подписались
+  storeChanged() {}
+
+  isWatching(key) {
+    return this.subscribeBy.includes(key)
   }
 
   // Инициализируем компонент и добавляем слушателей

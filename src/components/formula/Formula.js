@@ -1,7 +1,9 @@
-import { $ } from '@core/utils/dom';
-import { events } from '@core/constants/events';
-import { ExcelComponent } from '@core/ExcelComponent';
-import { ENTER, TAB } from '@core/constants/keys';
+import { ExcelComponent } from '@core/ExcelComponent'
+
+import { events } from '@core/constants/events'
+import { ENTER, TAB } from '@core/constants/keys'
+
+import { $ } from '@core/utils/dom'
 
 export class Formula extends ExcelComponent {
   static className = 'excel-formula'
@@ -9,9 +11,10 @@ export class Formula extends ExcelComponent {
   constructor(componentContainerNode, options = {}) {
     super(componentContainerNode, {
       name: 'Formula',
+      subscribeBy: ['currentText'],
       listeners: ['input', 'keydown'],
       ...options,
-    });
+    })
   }
 
   toHTML() {
@@ -23,27 +26,31 @@ export class Formula extends ExcelComponent {
           id="formula" 
           spellcheck="false" 
         />
-    `;
+    `
   }
 
   init() {
     super.init()
     this.input = this.componentContainerNode.find('input')
 
-    this.subscribe(events.TABLE_INPUT, (value) => {
-      this.input.text(value)
+    this.on(events.TABLE_INPUT, (cellNode) => {
+      this.input.text(cellNode.data.value || cellNode.text())
     })
   }
 
+  storeChanged(changes) {
+    this.input.text(changes.currentText)
+  }
+
   onInput(event) {
-    this.dispatch(events.FORMULA_INPUT, $(event.target).text())
+    this.emit(events.FORMULA_INPUT, $(event.target).text())
   }
 
   onKeydown(event) {
     const keys = [ENTER, TAB]
     if (keys.includes(event.key)) {
       $(event.target).blur()
-      this.dispatch(events.FORMULA_DONE, event)
+      this.emit(events.FORMULA_DONE, event)
     }
   }
 }

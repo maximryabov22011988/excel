@@ -13,11 +13,11 @@ module.exports = {
     'eslint:recommended', 'google',
   ],
   'rules': {
+    'semi': [ERROR, 'never'],
     'max-len': [ERROR, {
       'code': 150,
     }],
     'linebreak-style': [ERROR, 'windows'],
-    'semi': 'off',
     'require-jsdoc': 'off',
     'operator-linebreak': [ERROR, 'after', {
       'overrides': {
