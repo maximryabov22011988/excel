@@ -8,12 +8,12 @@ export const createHeader = (tableName) => {
     />
 
     <div class="excel-header__button-group">
-      <button class="excel-header__button-item">
-        <span class="material-icons">delete</span>
+      <button class="excel-header__button-item" data-button="remove">
+        <span class="material-icons" data-button="remove">delete</span>
       </button>
 
-      <button class="excel-header__button-item">
-        <span class="material-icons">exit_to_app</span>
+      <button class="excel-header__button-item" data-button="exit">
+        <span class="material-icons" data-button="exit">exit_to_app</span>
       </button>
     </div>
   `

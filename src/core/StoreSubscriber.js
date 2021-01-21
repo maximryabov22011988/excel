@@ -1,6 +1,6 @@
 import { isEqual } from '@core/utils'
 
-class StoreSubscriber {
+export class StoreSubscriber {
   constructor(store) {
     this.prevState = {}
     this.state = store
@@ -30,5 +30,3 @@ class StoreSubscriber {
     this.sub.unsubscribe()
   }
 }
-
-export { StoreSubscriber }

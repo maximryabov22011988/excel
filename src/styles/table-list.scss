@@ -40,7 +40,13 @@
     }
 
     strong {
-      margin-right: 24px;
+      margin-right: 8px;
     }
+  }
+
+  &__no-records {
+    margin-top: 16px;
+    margin-left: -16px;
+    font-size: $font-md;
   }
 }

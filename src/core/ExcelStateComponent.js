@@ -1,6 +1,6 @@
 import { ExcelComponent } from '@core/ExcelComponent'
 
-class ExcelStateComponent extends ExcelComponent {
+export class ExcelStateComponent extends ExcelComponent {
   constructor(...args) {
     super(...args)
   }
@@ -21,5 +21,3 @@ class ExcelStateComponent extends ExcelComponent {
     this.componentContainerNode.html(this.template)
   }
 }
-
-export { ExcelStateComponent }

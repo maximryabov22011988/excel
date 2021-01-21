@@ -11,7 +11,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "lint": "eslint --fix --ext .js,.jsx .",
+    "lint": "npx eslint ./src",
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,9 +1,7 @@
-import { applyStyle, changeTableName, changeText, resizeTable, setCurrentStyles } from '@/store/actions'
+import { applyStyle, changeTableName, changeText, resizeTable, setCurrentStyles, updateOpenedDate } from '@/store/actions'
 
 import { defaultStyles, defaultTableName } from '@core/constants/defaultValues'
-
-import { storage } from '@core/utils/storage'
-import { createReducer } from '@core/utils/store'
+import { createReducer, deepClone } from '@core/utils/store'
 
 const defaultState = {
   columnsState: {},
@@ -13,6 +11,7 @@ const defaultState = {
   currentText: '',
   tableName: defaultTableName,
   currentStyles: defaultStyles,
+  openedAt: new Date().toJSON(),
 }
 
 const normalize = (state) => ({
@@ -21,8 +20,7 @@ const normalize = (state) => ({
   currentStyles: defaultStyles,
 })
 
-
-const initialState = normalize(storage('excel-state')) || defaultState
+export const normalizeInitialState = (state) => state ? normalize(state) : deepClone(defaultState)
 
 export const rootReducer = createReducer({
   [resizeTable]: (state, { payload: { type, id, width, height }}) => {
@@ -88,4 +86,12 @@ export const rootReducer = createReducer({
       tableName,
     }
   },
-}, initialState)
+
+  [updateOpenedDate]: (state) => {
+    return {
+      ...state,
+      openedAt: new Date().toJSON(),
+    }
+  },
+})
+

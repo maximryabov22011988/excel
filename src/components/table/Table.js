@@ -4,7 +4,6 @@ import { events } from '@core/constants/events'
 import { TAB, ENTER, ARROW_RIGHT, ARROW_LEFT, ARROW_UP, ARROW_DOWN } from '@core/constants/keys'
 import { parse } from '@core/parse'
 import { $ } from '@core/utils/dom'
-import { storage } from '@core/utils/storage'
 
 import { resizeHandler } from '@/components/table/tableResize'
 import { TableSelection } from '@/components/table/TableSelection'
@@ -25,7 +24,7 @@ export class Table extends ExcelComponent {
   }
 
   toHTML() {
-    return createTable(40, storage('excel-state'))
+    return createTable(40, this.store.getState())
   }
 
   prepare() {

@@ -40,3 +40,5 @@ export const createReducer = (actionTypeToReducerMap, initialState) =>
     const reducer = actionTypeToReducerMap[action.type]
     return reducer ? reducer(state, action) : state
   }
+
+export const deepClone = (obj) => JSON.parse(JSON.stringify(obj))
