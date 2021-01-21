@@ -10,6 +10,9 @@ const storageHelper = (storage) => (key, data) => {
   storage.setItem(key, JSON.stringify(data))
 }
 
-export const storage = storageHelper(localStorage)
+const storage = storageHelper(localStorage)
+storage.remove = (key) => {
+  localStorage.removeItem(key)
+}
 
-
+export { storage }

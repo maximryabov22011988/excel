@@ -1,7 +1,8 @@
 import { init } from '@/store/actions'
+import { deepClone } from '@core/utils/store'
 
 export const createStore = (reducer, initialState = {}) => {
-  let state = reducer({ ...initialState }, init() )
+  let state = reducer(initialState, init() )
   let listeners = []
 
   return {
@@ -21,7 +22,7 @@ export const createStore = (reducer, initialState = {}) => {
     },
 
     getState() {
-      return JSON.parse(JSON.stringify(state))
+      return deepClone(state)
     },
   }
 }
