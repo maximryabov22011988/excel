@@ -1,6 +1,4 @@
-export const events = {
-  FORMULA_INPUT: 'formula:input',
-  FORMULA_DONE: 'formula:done',
-  TABLE_INPUT: 'table:input',
-  TOOLBAR_APPLY_STYLE: 'toolbar:applyStyle',
-}
+export const FORMULA_INPUT = 'formula:input'
+export const FORMULA_DONE = 'formula:done'
+export const TABLE_INPUT = 'table:input'
+export const TOOLBAR_APPLY_STYLE = 'toolbar:applyStyle'

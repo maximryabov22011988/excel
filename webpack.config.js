@@ -10,17 +10,7 @@ const isDev = !isProd
 const getFilename = (ext) => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
 
 const getJsLoaders = () => {
-  const loaders = [{
-    loader: 'babel-loader',
-    options: {
-      presets: ['@babel/preset-env'],
-      plugins: [
-        '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-proposal-nullish-coalescing-operator',
-        '@babel/plugin-proposal-optional-chaining',
-      ],
-    },
-  }]
+  const loaders = ['babel-loader']
 
   if (isDev) {
     loaders.push('eslint-loader')
@@ -63,7 +53,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: path.resolve(__dirname, './src/assets/index.html'),
       minify: {
         removeComments: isProd,
         collapseWhitespace: isProd,
@@ -72,7 +62,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/favicon.ico'),
+          from: path.resolve(__dirname, './src/assets/favicon.ico'),
           to: path.resolve(__dirname, 'dist'),
         },
       ],

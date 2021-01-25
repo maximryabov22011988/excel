@@ -1,5 +1,5 @@
-import { ActiveRoute } from '@core/routes/ActiveRoute'
-import { $ } from '@core/utils/dom'
+import { ActiveRoute } from './ActiveRoute'
+import { $ } from '../utils/dom'
 
 export class Router {
   constructor(selector, routes) {

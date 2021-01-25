@@ -8,10 +8,12 @@ module.exports = {
     'es6': true,
     'browser': true,
     'node': true,
+    'jest/globals': true,
   },
   'extends': [
     'eslint:recommended', 'google',
   ],
+  'plugins': ['jest'],
   'rules': {
     'semi': [ERROR, 'never'],
     'max-len': [ERROR, {

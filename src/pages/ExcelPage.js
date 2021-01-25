@@ -2,13 +2,13 @@ import { Page } from '@core/Page'
 import { debounce } from '@core/utils'
 import { storage } from '@core/utils/storage'
 
-import { Excel } from '@/components/excel/Excel'
-import { Header } from '@/components/header/Header'
-import { Toolbar } from '@/components/toolbar/Toolbar'
-import { Formula } from '@/components/formula/Formula'
-import { Table } from '@/components/table/Table'
+import { Excel } from '@/components/Excel/Excel'
+import { Header } from '@/components/Header/Header'
+import { Toolbar } from '@/components/Toolbar/Toolbar'
+import { Formula } from '@/components/Formula/Formula'
+import { Table } from '@/components/Table/Table'
 
-import { createStore } from '@/store/createStore'
+import { createStore } from '@core/store/createStore'
 import { normalizeInitialState, rootReducer } from '@/store/rootReducer'
 
 const getTableRecordKey = (param) => `excel:${param}`

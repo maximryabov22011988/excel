@@ -1,7 +1,7 @@
 import { applyStyle, changeTableName, changeText, resizeTable, setCurrentStyles, updateOpenedDate } from '@/store/actions'
 
 import { defaultStyles, defaultTableName } from '@core/constants/defaultValues'
-import { createReducer, deepClone } from '@core/utils/store'
+import { createReducer, deepClone } from '@core/store/utils'
 
 const defaultState = {
   columnsState: {},

@@ -1,4 +1,4 @@
-import { createAction } from '@core/utils/store'
+import { createAction } from '@core/store/utils'
 
 export const init = createAction('@INIT')
 export const resizeTable = createAction('@TABLE_COLUMN_RESIZE')
