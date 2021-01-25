@@ -4,7 +4,7 @@ import { ActiveRoute } from '@core/routes/ActiveRoute'
 import { $ } from '@core/utils/dom'
 import { storage } from '@core/utils/storage'
 
-import { createHeader } from '@/components/header/headerTemplate'
+import { createHeader } from '@/components/Header/headerTemplate'
 import { changeTableName } from '@/store/actions'
 
 export class Header extends ExcelComponent {

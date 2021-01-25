@@ -1,4 +1,4 @@
-import { StoreSubscriber } from '@core/StoreSubscriber'
+import { StoreSubscriber } from '@core/store/StoreSubscriber'
 import { Emitter } from '@core/Emitter'
 import { $ } from '@core/utils/dom'
 

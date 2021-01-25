@@ -1,5 +1,5 @@
 import { defaultStyles } from '@core/constants/defaultValues'
-import { parse } from '@core/parse'
+import { parse } from '@core/utils/parse'
 import { toInlineStyles } from '@core/utils'
 
 const charCode = {

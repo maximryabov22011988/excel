@@ -1,6 +1,6 @@
 import { ExcelComponent } from '@core/ExcelComponent'
 
-import { events } from '@core/constants/events'
+import { FORMULA_DONE, FORMULA_INPUT, TABLE_INPUT } from '@core/constants/events'
 import { ENTER, TAB } from '@core/constants/keys'
 
 import { $ } from '@core/utils/dom'
@@ -33,7 +33,7 @@ export class Formula extends ExcelComponent {
     super.init()
     this.input = this.componentContainerNode.find('input')
 
-    this.on(events.TABLE_INPUT, (cellNode) => {
+    this.on(TABLE_INPUT, (cellNode) => {
       this.input.text(cellNode.data.value || cellNode.text())
     })
   }
@@ -43,14 +43,14 @@ export class Formula extends ExcelComponent {
   }
 
   onInput(event) {
-    this.emit(events.FORMULA_INPUT, $(event.target).text())
+    this.emit(FORMULA_INPUT, $(event.target).text())
   }
 
   onKeydown(event) {
     const keys = [ENTER, TAB]
     if (keys.includes(event.key)) {
       $(event.target).blur()
-      this.emit(events.FORMULA_DONE, event)
+      this.emit(FORMULA_DONE, event)
     }
   }
 }
